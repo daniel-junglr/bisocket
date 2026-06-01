@@ -20,7 +20,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="bisocket",
-    version="0.0.1",
+    version="0.0.5-alpha1",
     author="Daniel Olson",
     author_email="daniel@orphos.cloud",
     description="bisocket is a high-level Python library for simple, secure, and truly bidirectional socket communication, using a dual-socket architecture to enable non-blocking, full-duplex I/O. It provides automatic AES-GCM encryption and supports both synchronous (threading) and asynchronous (asyncio) client-server applications",
@@ -49,7 +49,9 @@ setup(
     ext_modules=cythonize(extensions),
     package_data={
         'bisocket/cython': [
-            "*.pyx",
+            "*.pyx", # This line ensures the .pyx files are installed with the final package
+            "*.c",   # Include the generated C file as well
         ]
     },
+    include_package_data=True,
 )
